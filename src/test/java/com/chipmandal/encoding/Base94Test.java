@@ -12,10 +12,8 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Base94Test {
-    static byte[] standardAlphabet =
-            "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!@#$%^&*-_=+|\\;:\"'/?.>,<(){}[]".getBytes(StandardCharsets.UTF_8);
-    static Base94 base94;
-    static Random random;
+    private static Base94 base94;
+    private static Random random;
 
     @BeforeAll
     public static void init() {
@@ -23,7 +21,6 @@ class Base94Test {
         base94 = BaseEncoding.base94();
     }
 
-    @Test
     @RepeatedTest(5000)
     public void randomLengthsRandomEncodeDecode() {
 
@@ -38,9 +35,7 @@ class Base94Test {
     @DisplayName("Invalid size of alphabet")
     public void testAlphabetCheck() {
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Base94("abc".toCharArray());
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Base94("abc".toCharArray()));
         assertTrue(exception.getMessage().contains("Size of alphabet"), "Size mismatch");
 
     }
@@ -49,9 +44,7 @@ class Base94Test {
     @DisplayName("Duplicates in input alphabet")
     public void duplicatesInInput() {
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Base94("0123456789ABCDEFGHIJKLMNOPQRSTUVWXXZabcdefghijklmnopqrstuvwxyz~`!@#$%^&*-_=+|\\;:\"'/?.>,<(){}[]".toCharArray());
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Base94("0123456789ABCDEFGHIJKLMNOPQRSTUVWXXZabcdefghijklmnopqrstuvwxyz~`!@#$%^&*-_=+|\\;:\"'/?.>,<(){}[]".toCharArray()));
         assertTrue(exception.getMessage().contains("Invalid or duplicate"), "Invalid or duplicate");
 
     }

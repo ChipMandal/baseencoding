@@ -15,7 +15,7 @@ public class Base91 extends Base1613 implements BaseEncoding{
     /**
      * If you want to use a different alphabet.
      * An alphabet is 91 distinct bytes each in the range 0x21 to 0x126
-     * @param useAlphabet
+     * @param useAlphabet alphabet to use
      */
     public Base91(char[] useAlphabet) {
         super(91, useAlphabet);

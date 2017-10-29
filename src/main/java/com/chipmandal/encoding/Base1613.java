@@ -15,7 +15,7 @@ class Base1613 implements BaseEncoding{
     private final char[] alphabet;
     private final byte[] reverse;
     private final int num;
-    private Encoding1613 encoding1613 = new Encoding1613();
+    private final Encoding1613 encoding1613 = new Encoding1613();
 
     /**
      * If you want to use a different alphabet.
@@ -26,18 +26,18 @@ class Base1613 implements BaseEncoding{
      * we need atleast 91 characters so that 2 of them would cover 2^13 ( 91^2 > 2^13 )
      * We have 94 printable characters.
      *
-     * @param useAlphabet
+     * @param useAlphabet the alphabet to use
      */
     public Base1613(int num, char[] useAlphabet) {
         this.num = num;
 
         if ( useAlphabet.length == num ) {
             boolean[] chekbytes = new boolean[127];
-            for ( int i=0; i <  useAlphabet.length; i++) {
-                if ( useAlphabet[i] > 32 && useAlphabet[i] < 127 && !chekbytes[useAlphabet[i]]) {
-                    chekbytes[useAlphabet[i]] = true;
+            for (char anUseAlphabet : useAlphabet) {
+                if (anUseAlphabet > 32 && anUseAlphabet < 127 && !chekbytes[anUseAlphabet]) {
+                    chekbytes[anUseAlphabet] = true;
                 } else {
-                    throw new IllegalArgumentException("Invalid or duplicate byte in alphabet " + String.valueOf(useAlphabet[i]));
+                    throw new IllegalArgumentException("Invalid or duplicate byte in alphabet " + String.valueOf(anUseAlphabet));
                 }
             }
         } else {
@@ -51,7 +51,6 @@ class Base1613 implements BaseEncoding{
         }
     }
 
-    @Override
     /**
      *
      * This encodes each 13-bit of the input into 2 bytes of output
@@ -60,14 +59,15 @@ class Base1613 implements BaseEncoding{
      * @return encoded bytes
      *
      */
+    @Override
     public byte[] encode(byte[] input) {
         return encoding1613.encode(input);
     }
 
-    @Override
     /**
-     * Same as {@link #encode(byte[])}, but encodes into a String specified by the alphabet
+     Same as {@link #encode(byte[])}, but encodes into a String specified by the alphabet
      */
+    @Override
     public String encodeToString(byte[] input) {
         return bytesToString(encode(input));
     }
