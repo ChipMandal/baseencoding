@@ -1,5 +1,9 @@
 package com.chipmandal.encoding;
 
+/**
+ * see  {@link Base1613}
+ * Here we specify the alphabet of 94 characters we will use for the encodings
+ */
 public class Base91 extends Base1613 implements BaseEncoding{
 
     private final static char[] standardAlphabet =

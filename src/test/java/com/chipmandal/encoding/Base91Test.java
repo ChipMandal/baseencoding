@@ -1,7 +1,6 @@
 package com.chipmandal.encoding;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,7 @@ class Base91Test {
         int length = random.nextInt(5000);
         byte[] bytes = new byte[length];
         random.nextBytes(bytes);
-        String encoded = base91.encodeString(bytes);
+        String encoded = base91.encodeToString(bytes);
         byte[] decoded = base91.decodeString(encoded);
         assertTrue(Arrays.equals(bytes, decoded), "Failed for length " + length);
     }

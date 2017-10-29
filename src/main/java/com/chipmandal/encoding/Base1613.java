@@ -2,7 +2,15 @@ package com.chipmandal.encoding;
 
 import java.util.Arrays;
 
-abstract class Base1613 implements BaseEncoding{
+/**
+ *  This class is the main engine for encoding and decoding.
+ *
+ *  @see com.chipmandal.encoding.Encoding1613 for details
+ *
+ *  More info  at <a href="https://github.com/ChipMandal/baseencoding/wiki">here</a>
+ *
+ */
+class Base1613 implements BaseEncoding{
 
     private final char[] alphabet;
     private final byte[] reverse;
@@ -44,16 +52,36 @@ abstract class Base1613 implements BaseEncoding{
     }
 
     @Override
+    /**
+     *
+     * This encodes each 13-bit of the input into 2 bytes of output
+     *
+     * Input : Bytes to encode
+     * @return encoded bytes
+     *
+     */
     public byte[] encode(byte[] input) {
         return encoding1613.encode(input);
     }
 
     @Override
-    public String encodeString(byte[] input) {
+    /**
+     * Same as {@link #encode(byte[])}, but encodes into a String specified by the alphabet
+     */
+    public String encodeToString(byte[] input) {
         return bytesToString(encode(input));
     }
 
     @Override
+    /**
+     *
+     * This decodes the bytes which were previously encoded using {@link #encode(byte[])}
+     * to the original form
+     *
+     * Input : Base1613 encoded bytes
+     * @return decoded original bytes
+     *
+     */
     public byte[] decode(byte[] input) {
         return encoding1613.decode(input);
     }
@@ -78,6 +106,11 @@ abstract class Base1613 implements BaseEncoding{
 
 
     @Override
+    /**
+     *
+     * @param input Input string encoding in the right format
+     * @return bytes corresponding to the input string
+     */
     public byte[] decodeString(String input) {
         char[] array = input.toCharArray();
 

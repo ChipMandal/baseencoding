@@ -11,7 +11,7 @@ public interface BaseEncoding {
     }
 
     byte[] encode(byte [] input);
-    String encodeString(byte [] input);
+    String encodeToString(byte [] input);
     byte[] decode(byte [] input);
     byte[] decodeString(String input);
 

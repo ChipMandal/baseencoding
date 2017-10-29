@@ -1,6 +1,5 @@
 package com.chipmandal.encoding;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -31,7 +30,7 @@ class Base94Test {
         int length = random.nextInt(5000);
         byte[] bytes = new byte[length];
         random.nextBytes(bytes);
-        String encoded = base94.encodeString(bytes);
+        String encoded = base94.encodeToString(bytes);
         byte[] decoded = base94.decodeString(encoded);
         assertTrue(Arrays.equals(bytes, decoded), "Failed for length " + length);
     }
